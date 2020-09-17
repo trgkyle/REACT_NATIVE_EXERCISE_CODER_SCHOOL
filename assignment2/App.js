@@ -1,10 +1,72 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { Button, StyleSheet, Text, View, Image } from "react-native";
+import React, { useState } from "react";
+import {
+  TouchableHighlight,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
 import Constants from "expo-constants";
+import { useWindowDimensions } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+const images = [
+  {
+    name: "Olivia",
+    updateAt: "4h",
+    avatar: require("./images/avatars/avatar1.jpg"),
+    image: require("./images/girls/girl1.jpg"),
+  },
+  {
+    name: "Emma",
+    updateAt: "4h",
+    avatar: require("./images/avatars/avatar2.jpg"),
+    image: require("./images/girls/girl2.jpg"),
+  },
+  {
+    name: "Ava",
+    updateAt: "4h",
+
+    avatar: require("./images/avatars/avatar3.jpg"),
+    image: require("./images/girls/girl3.jpg"),
+  },
+  {
+    name: "Sophia",
+    updateAt: "4h",
+
+    avatar: require("./images/avatars/avatar4.jpg"),
+    image: require("./images/girls/girl4.jpg"),
+  },
+  {
+    name: "Isabella",
+    updateAt: "4h",
+
+    avatar: require("./images/avatars/avatar5.jpg"),
+    image: require("./images/girls/girl5.jpg"),
+  },
+  {
+    name: "Mia",
+    updateAt: "4h",
+
+    avatar: require("./images/avatars/avatar6.jpg"),
+    image: require("./images/girls/girl6.jpg"),
+  },
+  {
+    name: "Harper",
+    updateAt: "4h",
+
+    avatar: require("./images/avatars/avatar7.jpg"),
+    image: require("./images/girls/girl7.jpg"),
+  },
+];
+
 export default function App() {
+  const [widthListImage, setWidthListImage] = useState(0);
   return (
     <View style={styles.container}>
       <View style={styles.headerBar}>
@@ -24,47 +86,110 @@ export default function App() {
             ></Image>
           </View>
           <View style={styles.bodyTopRight}>
-            <Text style={styles.headerText}>Header name</Text>
-            <Text style={styles.titleText}>Header</Text>
+            <Text style={styles.headerText}>Uyên Nhi</Text>
+            <Text style={styles.titleText}>Nhi đáng iêu</Text>
             <View style={styles.headerAction}>
-              <Button style={{flex: 6}} title="Learn More" color="#841584"></Button>
-              <MaterialIcons style={{flex:2}} name="send" size={24} color="black" />
+              <TouchableHighlight
+                style={{
+                  paddingVertical: 5,
+                  paddingHorizontal: 25,
+                  marginHorizontal: 5,
+                  backgroundColor: "#3B73FF",
+                  borderRadius: 30,
+                }}
+                activeOpacity={0.6}
+                underlayColor="#DDDDDD"
+                onPress={() => alert("Pressed!")}
+              >
+                <Text style={{ color: "white" }}>Follow</Text>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={{
+                  paddingVertical: 5,
+                  paddingHorizontal: 20,
+                  marginHorizontal: 5,
+                  backgroundColor: "#56D8FF",
+                  borderRadius: 30,
+                }}
+                activeOpacity={0.6}
+                underlayColor="#DDDDDD"
+                onPress={() => alert("Pressed!")}
+              >
+                <MaterialIcons name="send" size={24} color="white" />
+              </TouchableHighlight>
             </View>
           </View>
         </View>
         <View style={styles.wrapInfoNumber}>
           <View>
-            <Text style={styles.headerText}>210</Text>
+            <Text style={[styles.headerText, { textAlign: "center" }]}>
+              210
+            </Text>
             <Text style={styles.titleText}>Photos</Text>
           </View>
           <View>
-            <Text style={styles.headerText}>24k</Text>
+            <Text style={[styles.headerText, { textAlign: "center" }]}>
+              24k
+            </Text>
             <Text style={styles.titleText}>Followers</Text>
           </View>
           <View>
-            <Text style={styles.headerText}>230</Text>
+            <Text style={[styles.headerText, { textAlign: "center" }]}>
+              230
+            </Text>
             <Text style={styles.titleText}>Following</Text>
           </View>
         </View>
-        <View style={styles.imagesWrapper}>
-          {/* <Image></Image>
-            <Image></Image> */}
-        </View>
       </View>
-      <StatusBar style="auto" />
+      <ScrollView style={{ flex: 1 }}>
+        <View
+          style={styles.imagesWrapper}
+          onLayout={(event) => {
+            let { width } = event.nativeEvent.layout;
+            setWidthListImage(width);
+          }}
+        >
+          {images.map((item, index) => (
+            <Image
+              key={index}
+              style={{
+                borderRadius: 10,
+                margin: 5,
+                width: widthListImage / 2 - 10,
+                height:
+                  (widthListImage /
+                    2 /
+                    Image.resolveAssetSource(item.image).width) *
+                  Image.resolveAssetSource(item.image).height,
+              }}
+              source={item.image}
+            ></Image>
+          ))}
+        </View>
+      </ScrollView>
+      <View
+        style={{
+          height: 50,
+          paddingVertical: 9,
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
+        <AntDesign name="swap" size={24} color="black" />
+        <Ionicons name="ios-add-circle-outline" size={24} color="blue" />
+        <Feather name="users" size={24} color="black" />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  jcnt: {
-    justifyContent: "center",
-  },
   body: {
-    marginTop: 30,
+    paddingTop: 30,
     flexDirection: "column",
   },
   bodyTop: {
+    marginBottom: 10,
     flexDirection: "row",
   },
   bodyTopLeft: {
@@ -75,6 +200,7 @@ const styles = StyleSheet.create({
     flex: 3,
   },
   headerAction: {
+    paddingVertical: 5,
     flexDirection: "row",
     alignItems: "center",
   },
@@ -88,19 +214,26 @@ const styles = StyleSheet.create({
 
   wrapInfoNumber: {
     flexDirection: "row",
-    marginVertical: 20,
+    marginVertical: 10,
     marginHorizontal: 20,
     justifyContent: "space-between",
   },
   headerBar: {
+    paddingVertical: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },
   container: {
+    marginTop: Constants.statusBarHeight,
     marginHorizontal: 30,
     flexDirection: "column",
-    marginTop: Constants.statusBarHeight,
     flex: 1,
     backgroundColor: "#fff",
+    overflow: "hidden",
+  },
+  imagesWrapper: {
+    alignContent: "flex-start",
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
 });
