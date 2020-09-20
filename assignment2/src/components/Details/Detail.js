@@ -10,9 +10,12 @@ import Constants from "expo-constants";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import { ScrollView, TouchableHighlight } from "react-native-gesture-handler";
 const images = [
   {
     name: "Olivia",
@@ -22,10 +25,10 @@ const images = [
   },
 ];
 
-const Detail = () => {
+const Detail = ({ navigation, route }) => {
   const [widthListImage, setWidthListImage] = useState(0);
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <View
         style={styles.imagesWrapper}
         onLayout={(event) => {
@@ -34,7 +37,7 @@ const Detail = () => {
         }}
       >
         <ImageBackground
-          source={images[0].image}
+          source={route.params.image}
           style={{
             width: widthListImage,
             height: Dimensions.get("screen").height / 2,
@@ -42,26 +45,47 @@ const Detail = () => {
         >
           <View style={styles.container}>
             <View style={styles.headerBar}>
-              <MaterialIcons name="arrow-back" size={24} color="#666" />
+              <TouchableHighlight
+                activeOpacity={0.6}
+                underlayColor="#ffffff00"
+                onPress={() => {
+                  navigation.navigate("Profile");
+                }}
+              >
+                <MaterialIcons
+                  name="arrow-back"
+                  size={24}
+                  color="#666"
+                />
+              </TouchableHighlight>
               <AntDesign name="bars" size={24} color="#666" />
             </View>
           </View>
         </ImageBackground>
       </View>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
+            paddingVertical: 20,
           }}
         >
           <View style={styles.titleLeft}>
             <View>
-              <Text style={{ fontSize: 40, fontWeight: "500" }}>
+              <Text style={{ fontSize: 40, fontWeight: "700" }}>
                 Eiffel tower
               </Text>
-              <Text>Paris, Franch</Text>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Fontisto
+                  style={[{ paddingRight: 10 }, styles.secondaryColor]}
+                  name="map-marker-alt"
+                  size={24}
+                  color="#666"
+                />
+                <Text style={styles.secondaryColor}>Paris, Franch</Text>
+              </View>
             </View>
           </View>
           <View style={styles.titleRight}>
@@ -84,37 +108,41 @@ const Detail = () => {
             </TouchableHighlight>
           </View>
         </View>
-        <View>
+        <View style={{ paddingVertical: 20 }}>
           <Text>
             Lorem ipsum dolor sit amet, corsectetur adjpisicing elit. Porin
             subpit
           </Text>
         </View>
+        <View style={styles.hashTagWrapper}>
+          <Text style={styles.hashTag}>#photograhpy</Text>
+          <Text style={styles.hashTag}>#sea</Text>
+        </View>
         <View style={styles.footer}>
           <View style={styles.footerLeft}>
             <AntDesign
-              style={{ paddingRight: 10 }}
+              style={[{ paddingRight: 10 }, styles.IconColor]}
               name="heart"
               size={30}
               color="#666"
             />
-            <FontAwesome
-              style={{ paddingRight: 10 }}
+            <MaterialCommunityIcons
+              style={[{ paddingRight: 10 }, styles.IconColor]}
               name="comment"
               size={30}
-              color="#666"
+              color="black"
             />
           </View>
           <View style={styles.footerRight}>
-            <Entypo
-              style={{ paddingRight: 10 }}
-              name="attachment"
+            <MaterialCommunityIcons
+              style={[{ paddingRight: 10 }, styles.IconColor]}
+              name="bookmark"
               size={30}
-              color="#666"
+              color="black"
             />
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -165,15 +193,32 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginTop: 30,
   },
   footerLeft: {
     flexDirection: "row",
   },
   IconColor: {
-    color: "#666",
+    color: "#9EA6D1",
   },
   whiteColor: {
     color: "white",
+  },
+  secondaryColor: {
+    color: "#6c757d",
+  },
+
+  // hash tag
+  hashTagWrapper: {
+    flexDirection: "row",
+  },
+  hashTag: {
+    overflow: "hidden",
+    borderRadius: 10,
+    backgroundColor: "#E6E8F3",
+    color: "#B4B8DF",
+    padding: 5,
+    margin: 5,
   },
 });
 

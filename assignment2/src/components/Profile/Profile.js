@@ -64,7 +64,7 @@ const images = [
   },
 ];
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
   const [widthListImage, setWidthListImage] = useState(0);
   return (
     <View style={styles.container}>
@@ -104,7 +104,7 @@ const Profile = () => {
               </TouchableHighlight>
               <TouchableHighlight
                 style={{
-                  paddingVertical: 5,
+                  paddingVertical: 2,
                   paddingHorizontal: 20,
                   marginHorizontal: 5,
                   backgroundColor: "#56D8FF",
@@ -149,20 +149,27 @@ const Profile = () => {
           }}
         >
           {images.map((item, index) => (
-            <Image
+            <TouchableHighlight
+              underlayColor="#ffffff00"
               key={index}
-              style={{
-                borderRadius: 10,
-                margin: 5,
-                width: widthListImage / 2 - 10,
-                height:
-                  (widthListImage /
-                    2 /
-                    Image.resolveAssetSource(item.image).width) *
-                  Image.resolveAssetSource(item.image).height,
+              onPress={() => {
+                navigation.navigate("Detail", { image: item.image });
               }}
-              source={item.image}
-            ></Image>
+            >
+              <Image
+                style={{
+                  borderRadius: 10,
+                  margin: 5,
+                  width: widthListImage / 2 - 10,
+                  height:
+                    (widthListImage /
+                      2 /
+                      Image.resolveAssetSource(item.image).width) *
+                    Image.resolveAssetSource(item.image).height,
+                }}
+                source={item.image}
+              ></Image>
+            </TouchableHighlight>
           ))}
         </View>
       </ScrollView>
@@ -236,4 +243,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile
+export default Profile;
