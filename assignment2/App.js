@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Profile from "./src/components/Profile/Profile";
-import Header from "./src/components/Header/Header";
 import Detail from "./src/components/Details/Detail";
 const Stack = createStackNavigator();
 

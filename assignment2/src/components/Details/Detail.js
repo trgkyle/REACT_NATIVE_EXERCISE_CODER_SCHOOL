@@ -8,12 +8,11 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import { MaterialIcons } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 import { ScrollView, TouchableHighlight } from "react-native-gesture-handler";
 const images = [
@@ -52,11 +51,7 @@ const Detail = ({ navigation, route }) => {
                   navigation.navigate("Profile");
                 }}
               >
-                <MaterialIcons
-                  name="arrow-back"
-                  size={24}
-                  color="#666"
-                />
+                <MaterialIcons name="arrow-back" size={24} color="#666" />
               </TouchableHighlight>
               <AntDesign name="bars" size={24} color="#666" />
             </View>
@@ -108,7 +103,7 @@ const Detail = ({ navigation, route }) => {
             </TouchableHighlight>
           </View>
         </View>
-        <View style={{ paddingVertical: 20 }}>
+        <View style={{ height: 100, paddingVertical: 20 }}>
           <Text>
             Lorem ipsum dolor sit amet, corsectetur adjpisicing elit. Porin
             subpit
@@ -143,6 +138,19 @@ const Detail = ({ navigation, route }) => {
           </View>
         </View>
       </ScrollView>
+      <View
+        style={{
+          paddingHorizontal: 20,
+          height: 50,
+          paddingVertical: 9,
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
+        <AntDesign name="swap" size={24} color="black" />
+        <Ionicons name="ios-add-circle-outline" size={24} color="blue" />
+        <Feather name="users" size={24} color="black" />
+      </View>
     </View>
   );
 };
@@ -176,6 +184,7 @@ const styles = StyleSheet.create({
   },
 
   headerBar: {
+    height: 40,
     paddingVertical: 10,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -193,7 +202,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 30,
+    marginVertical: 20,
+    height: 100,
   },
   footerLeft: {
     flexDirection: "row",
