@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#e9ebee",
   },
   gameTitle: {
-    fontSize: 23,
+    fontSize: 35,
     fontWeight: "600",
   },
   choicesContainer: {
