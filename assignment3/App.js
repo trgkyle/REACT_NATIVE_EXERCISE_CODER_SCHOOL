@@ -43,7 +43,7 @@ export default function App() {
     }
 
     if (userChoice === computerChoice) {
-      result = "Tie Game!";
+      result = "Tie Game";
     }
     return [result, computerChoice];
   };

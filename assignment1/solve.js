@@ -6,7 +6,6 @@ button.addEventListener("click", function () {
   // Hint: Perhaps what happens next in Milestone 4.
   if (countWrong >= 10) return;
   let inputValue = document.getElementById("number").value;
-  console.log(inputValue);
   if (random === +inputValue) {
     document.getElementById("message").style.backgroundColor = "green";
     document.getElementById("message").innerHTML =
