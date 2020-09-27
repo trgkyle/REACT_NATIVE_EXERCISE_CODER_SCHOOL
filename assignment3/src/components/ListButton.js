@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
-import { capitalizeFirstLetter } from "../../libs/common/string-resolver";
+import { capitalizeFirstLetter } from "../../libs/common/resolver";
 
 const ListButton = ({ buttonList = [], buttonAction }) => {
   return (

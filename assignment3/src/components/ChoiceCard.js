@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { capitalizeFirstLetter } from "../../libs/common/string-resolver";
+import { capitalizeFirstLetter } from "../../libs/common/resolver";
 
 const ChoiceCard = ({ player, choiceInfo }) => {
   const playerName = capitalizeFirstLetter(player);

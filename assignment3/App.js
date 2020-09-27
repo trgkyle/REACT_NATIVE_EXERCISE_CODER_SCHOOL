@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ChoiceCard from "./src/components/ChoiceCard";
 import ListButton from "./src/components/ListButton";
-import { randomChooser } from "./libs/common/string-resolver";
+import { randomChooser } from "./libs/common/resolver";
 
 const CHOICES = [
   {
