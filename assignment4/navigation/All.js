@@ -1,14 +1,15 @@
+import "react-native-gesture-handler";
 import React from "react";
-import { Text, View } from "react-native";
-import { createAppContainer } from "react-navigation";
-import { createBottomTabNavigator } from "react-navigation-tabs";
-
-const All = () => {
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import DetailTodoScreen from "../screens/DetailTodoScreen";
+import MainTodoScreen from "../screens/MainTodoScreen";
+const Stack = createStackNavigator();
+export default function AllTab() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>All tab</Text>
-    </View>
+    <Stack.Navigator initialRouteName="MainTodoScreen" >
+      <Stack.Screen name="Main Todo Screen" component={MainTodoScreen} />
+      <Stack.Screen name="Detail Todo Screen" component={DetailTodoScreen} />
+    </Stack.Navigator>
   );
-};
- 
-export default All;
+}
