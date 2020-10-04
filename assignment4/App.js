@@ -35,7 +35,7 @@ export default function App() {
       <Tab.Navigator
         screenOptions={screenOptionsRender}
         tabBarOptions={{
-          activeTintColor: "#358c63",
+          activeTintColor: "#222",
           inactiveTintColor: "gray",
         }}
         initialRouteName="All"
