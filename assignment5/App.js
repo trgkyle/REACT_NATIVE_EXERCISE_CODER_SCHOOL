@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 
 import {
@@ -8,15 +7,17 @@ import {
   View,
   ActivityIndicator,
   FlatList,
+  Linking,
   Image,
   SafeAreaView,
+  Alert,
 } from "react-native";
 import moment from "moment";
-import { Card, ListItem, Button, Icon } from "react-native-elements";
+import { Card } from "react-native-elements";
 
 const API_KEY = "5c6f907ca39c479484b6214dc92d034c";
 const url = (key) =>
-  `http://newsapi.org/v2/everything?q=bitcoin&from=2020-09-08&sortBy=publishedAt&apiKey=${key}`;
+  `http://newsapi.org/v2/everything?q=bitcoin&from=2020-09-11&sortBy=publishedAt&apiKey=${key}`;
 
 export default function App() {
   const [contentData, setContentData] = useState(null);
@@ -26,6 +27,7 @@ export default function App() {
       const dataJson = await data.json();
       setContentData(dataJson);
     } catch (e) {
+      Alert.alert("Error fetching","Cannot get data")
       console.log(e);
     }
   };
@@ -35,7 +37,7 @@ export default function App() {
   if (!contentData)
     return (
       <View style={styles.container}>
-        <ActivityIndicator />
+        <ActivityIndicator size="large" />
       </View>
     );
   const renderArticles = ({ item }) => {
@@ -58,8 +60,8 @@ export default function App() {
         <Card.Title>{item.title}</Card.Title>
         <Image
           style={{
-            width: null,
-            height: 300,
+            width: "100%",
+            height: 200,
           }}
           source={{ url: item.urlToImage }}
         />
@@ -75,12 +77,31 @@ export default function App() {
             <Text>{moment(item.publishedAt).startOf("day").fromNow()}</Text>
           </View>
         </View>
+        <Card.Divider />
+        <View>
+          <TouchableHighlight
+            activeOpacity={0.6}
+            underlayColor="#ffffff00"
+            onPress={() => {
+              Linking.canOpenURL(item.url).then(supported => {
+                if (supported) {
+                  Linking.openURL(item.url);
+                } else {
+                  console.log(`Don't know how to open URL: ${item.url}`);
+                }
+              });
+              // navigation.navigate("Profile");
+            }}
+          >
+            <Text style={{color: "#347AB7"}}>Read more</Text>
+          </TouchableHighlight>
+        </View>
       </Card>
     );
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View></View>
+      <View><Text style={{fontWeight: "bold", paddingBottom: 10}}>Articles Count: {contentData?.articles.length}</Text></View>
       <FlatList
         data={contentData?.articles}
         renderItem={renderArticles}
