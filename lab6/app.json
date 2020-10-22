@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "lab6",
+    "slug": "lab6",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "ca.brentvatne.growlerprowler",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAXgcR_r68BMZ3sXbsEnGSvYc-HxvGnMGU"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
